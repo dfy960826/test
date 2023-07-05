@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Google Tag Manager -->
+
+        <!-- End Google Tag Manager -->
+    </head>
+    <body>
+        <script>
+            function getUrl(name, url) {
+                if (url) {
+                    url = url.slice(url.indexOf('?'))
+                } else {
+                    url = window.location.search;
+                } 
+                var pattern =new RegExp("[\?\&]" + name + "=([^\&]+)", "i"); // 正则匹配URL
+                var matcher = pattern.exec(url);
+                if (matcher == null || matcher.length < 1) {
+                    return "没有该参数";
+                }
+                return decodeURIComponent(matcher[1]);
+            }
+            // 1
+            let url = 'yourwebsite.github.io?key1=name&key2=name@email.com'
+            console.log('key1=', getUrl('key1', url))
+            console.log('key2=', getUrl('key2', url))
+
+            // 2
+            let customerid = getUrl('key1', url)
+            let customeremail = getUrl('key2', url)
+            console.log(customerid)
+            console.log(customeremail)
+        </script>
+    </body>
+    <!-- Google Tag Manager (noscript) -->
+
+    <!-- End Google Tag Manager (noscript) -->
+</html>
